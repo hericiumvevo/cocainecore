@@ -1,0 +1,1041 @@
+
+
+
+options:
+    # Change this to the way you want your permission message to look like.
+    permissionmessage: &cYou do not have the correct permission to execute this command!
+    # Change this to the way you want your broadcast message to look like.
+    broadcastprefix: &3&lBROADCAST
+    broadcasttextcolor: &e
+    # Join & Quit messages - change this to whatever you want...
+    joinmessage: &8[&a+&8] &7%player%
+    quitmessage: &8[&4-&8] &7%player%
+    firstjoinmessage: &7Welcome &9%player% &7to &9&lApery&7!
+ 
+on join:
+    set join message to "{@joinmessage}"
+ 
+on quit:
+    set quit message to "{@quitmessage}"
+ 
+on first join:
+    set join message to "{@firstjoinmessage}"
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                               CHAT                                                                                    #
+ 
+on chat:
+    set chat format to "%player's prefix%%player's display name%%player's suffix% &8» %{chatcolor.%player%}%%message%"
+ 
+on first join:
+    set {chatcolor.%player%} to "&7"
+ 
+on join:
+    if {chatcolor.%player%} is not set:
+        set {chatcolor.%player%} to "&7"
+ 
+command /chatcolor:
+    aliases: chatcolour
+    permission: cocaine.chatcolor
+    permission message: {@permissionmessage}
+    usage: &cUsage: /chatcolor
+    trigger:
+        open virtual chest inventory with size 4 to player
+        format gui slot 3 of player with blue dye named "&1Dark Blue" with lore "&7Click to set your chatcolor to Dark Blue!" to run:
+            set {chatcolor.%player%} to "&1"
+            close player's inventory
+            message "&3Successfully set chatcolor to &1Dark Blue&3."
+        format gui slot 4 of player with green dye named "&2Green" with lore "&7Click to set your chatcolor to Green!" to run:
+            set {chatcolor.%player%} to "&2"
+            close player's inventory
+            message "&3Successfully set chatcolor to &2Green&3."
+        format gui slot 20 of player with cyan dye named "&3Cyan" with lore "&7Click to set your chatcolor to Cyan!" to run:
+            set {chatcolor.%player%} to "&3"
+            close player's inventory
+            message "&3Successfully set chatcolor to &3Cyan."
+        format gui slot 21 of player with red dye named "&cLight Red" with lore "&7Click to set your chatcolor to Light Red!" to run:
+            set {chatcolor.%player%} to "&c"
+            close player's inventory
+            message "&3Successfully set chatcolor to &cLight Red&3."
+        format gui slot 22 of player with purple dye named "&5Purple" with lore "&7Click to set your chatcolor to Purple!" to run:
+            set {chatcolor.%player%} to "&5"
+            close player's inventory
+            message "&3Successfully set chatcolor to &5Purple&3."
+        format gui slot 23 of player with orange dye named "&6Orange" with lore "&7Click to set your chatcolor to Orange!" to run:
+            set {chatcolor.%player%} to "&6"
+            close player's inventory
+            message "&3Successfully set chatcolor to &6Orange&3."
+        format gui slot 24 of player with light gray dye named "&7Gray" with lore "&7Click to set your chatcolor to Gray!" to run:
+            set {chatcolor.%player%} to "&7"
+            close player's inventory
+            message "&3Successfully set chatcolor to &7Gray&3."
+        format gui slot 5 of player with gray dye named "&8Dark Gray" with lore "&7Click to set your chatcolor to Dark Gray!" to run:
+            set {chatcolor.%player%} to "&8"
+            close player's inventory
+            message "&3Successfully set chatcolor to &8Dark Gray&3."
+        format gui slot 30 of player with lapis lazuli named "&9Blue" with lore "&7Click to set your chatcolor to Blue!" to run:
+            set {chatcolor.%player%} to "&9"
+            close player's inventory
+            message "&3Successfully set chatcolor to &9Blue&3."
+        format gui slot 31 of player with lime dye named "&aLight Green" with lore "&7Click to set your chatcolor to Light Green!" to run:
+            set {chatcolor.%player%} to "&a"
+            close player's inventory
+            message "&3Successfully set chatcolor to &aLight Green&3."
+        format gui slot 32 of player with pink dye named "&dPink" with lore "&7Click to set your chatcolor to Pink!" to run:
+            set {chatcolor.%player%} to "&d"
+            close player's inventory
+            message "&3Successfully set chatcolor to &dPink&3."
+        format gui slot 11 of player with white dye named "&fWhite" with lore "&7Click to set your chatcolor to White!" to run:
+            set {chatcolor.%player%} to "&f"
+            close player's inventory
+            message "&3Successfully set chatcolor to &fWhite&3."
+        format gui slot 12 of player with yellow dye named "&eYellow" with lore "&7Click to set your chatcolor to Yellow!" to run:
+            set {chatcolor.%player%} to "&e"
+            close player's inventory
+            message "&3Successfully set chatcolor to &eYellow&3."
+        format gui slot 13 of player with black dye named "&0Black" with lore "&7Click to set your chatcolor to Black!" to run:
+            set {chatcolor.%player%} to "&0"
+            close player's inventory
+            message "&3Successfully set chatcolor to &0Black&3."
+        format gui slot 14 of player with fermented spider eye named "&4Red" with lore "&7Click to set your chatcolor to Red!" to run:
+            set {chatcolor.%player%} to "&4"
+            close player's inventory
+            message "&3Successfully set chatcolor to &4Red&3."
+        format gui slot 15 of player with light blue dye named "&bLight Blue" with lore "&7Click to set your chatcolor to Light Blue!" to run:
+            set {chatcolor.%player%} to "&b"
+            close player's inventory
+            message "&3Successfully set chatcolor to &bLight Blue&3."
+        format gui slot (all integers between 0 and 2) of player with dark gray glass pane named ""
+        format gui slot (all integers between 6 and 10) of player with dark gray glass pane named ""
+        format gui slot (all integers between 16 and 19) of player with dark gray glass pane named ""
+        format gui slot (all integers between 25 and 29) of player with dark gray glass pane named ""
+        format gui slot (all integers between 33 and 35) of player with dark gray glass pane named ""
+ 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                           GAMEMODES                                                                       #
+ 
+command /gmc [<player>]:
+    permission: cocaine.gmc
+    permission message: {@permissionmessage}
+    usage: &cUsage: /gmc <player>
+    trigger:
+        if arg-1 is not set:
+            set player's gamemode to creative
+            message "&3Set gamemode to &ecreative &3mode."
+        else:
+            set arg-1's gamemode to creative
+            message "&3Set &e%arg-1%&3's to creative."
+ 
+command /gms [<player>]:
+    permission: cocaine.gms
+    permission message: {@permissionmessage}
+    usage: &cUsage: /gms <player>
+    trigger:
+        if arg-1 is not set:
+            set player's gamemode to survival
+            message "&3Set gamemode to &esurvival &3mode."
+        else:
+            set arg-1's gamemode to survival
+            message "&3Set &e%arg-1%&3's to survival."
+ 
+command /gmsp [<player>]:
+    permission: cocaine.gmsp
+    permission message: {@permissionmessage}
+    usage: &cUsage: /gmsp <player>
+    trigger:
+        if arg-1 is not set:
+            set player's gamemode to spectator
+            message "&3Set gamemode to &espectator &3mode."
+        else:
+            set arg-1's gamemode to spectator
+            message "&3Set &e%arg-1%&3's to spectator."
+ 
+command /gma [<player>]:
+    permission: cocaine.gma
+    permission message: {@permissionmessage}
+    usage: &cUsage: /gma <player>
+    trigger:
+        if arg-1 is not set:
+            set player's gamemode to adventure
+            message "&3Set gamemode to &eadventure &3mode."
+        else:
+            set arg-1's gamemode to adventure
+            message "&3Set &e%arg-1%&3's to adventure."
+ 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                   TELEPORTATIONS                                                                      #
+ 
+command /tp <player> [<player>]:
+    aliases: /teleport
+    permission: cocaine.tp
+    permission message: {@permissionmessage}
+    usage: &cUsage: /teleport <player>
+    trigger:
+        if arg-2 is set:
+            teleport arg-1 to arg-2
+            message "&3Successfully teleported &e%arg-1% &3to &e%arg-2%&3."
+            message "&3Teleporting..." to arg-1
+        else:
+            teleport player to arg-1
+            message "&3Teleporting to &e%arg-1%&3..."
+ 
+command /tphere <player>:
+    permission: cocaine.tphere
+    permission message: {@permissionmessage}
+    usage: &cUsage: /tphere <player>
+    trigger:
+        teleport arg-1 to player
+        message "&3Teleporting..."
+ 
+command /tpall:
+    permission: cocaine.tpall
+    permission message: {@permissionmessage}
+    usage: &cUsage: /tpall
+    trigger:
+        loop all players:
+            teleport loop-player to player
+ 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                               HOMES                                                                               #
+ 
+command /sethome:
+    permission: cocaine.sethome
+    permission message: {@permissionmessage}
+    usage: &cUsage: /sethome
+    trigger:
+        set {home.%player%} to location of player
+        message "&3Home set to current location."
+ 
+command /home:
+    permission: cocaine.home
+    permission message: {@permissionmessage}
+    usage: &cUsage: /home
+    trigger:
+        if player is op:
+            teleport player to {home.%player%}
+            message "&3Teleporting to &ehome&3."
+        else:
+            message "&cYou haven't set your home yet! &e/sethome"
+ 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                               SPAWN                                                                               #
+ 
+command /setspawn:
+    permission: cocaine.setspawn
+    permission message: {@permissionmessage}
+    usage: &cUsage: /setspawn
+    trigger:    
+        set {spawn} to location of player
+        message "&3Successfully set &espawn &3to your location."
+ 
+command /spawn [<player>]:
+    permission: cocaine.spawn
+    permission message: {@permissionmessage}
+    usage: &cUsage: /spawn | /spawn <player>
+    trigger:  
+        if {spawn} is set:
+            if arg-1 is not set:
+                teleport player to {spawn}
+                message "&3Teleporting..."
+            else:
+                teleport arg-1 to {spawn}
+                message "&3Teleporting &e%arg-1% &3to spawn..."
+                message "&3Teleporting..." to arg-1
+        else:
+            message "&cThe spawn hasn't been set!"
+ 
+command /deletespawn:
+    aliases: delspawn
+    permission: cocaine.deletespawn
+    permission message: {@permissionmessage}
+    usage: &cUsage: /spawn
+    trigger:  
+        if {spawn} is set:
+            delete {spawn}
+            message "&3Successfully deleted &espawn&3."
+        else:
+            message "&cThe spawn hasn't been set!"
+ 
+on first join:
+    teleport player to {spawn}
+ 
+on respawn:
+    teleport player to {spawn}
+ 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                               TPA                                                                                     #
+command /tpa <player>:
+    permission: cocaine.tpa
+    permission message: {@permissionmessage}
+    usage: &cUsage: /tpa <player>
+    trigger:    
+        if arg-1 is not player:
+            set {skript::tpa::%argument 1%} to "%player%"
+            send "&e%player% &3wants teleport to you. &3Use &e/tpaccept &3to accept" to arg-1
+            message "&3Teleport request sent."
+        else:
+            message "&cYou cannot teleport to yourself!"
+ 
+command /tpahere <player>:
+    permission: cocaine.tpahere
+    permission message: {@permissionmessage}
+    usage: &cUsage: /tpahere <player>
+    trigger:
+        if arg-1 is not player:
+            set {skript::tpahere::%arg-1%} to "%player%"
+            send "&e%player% &3wants you to teleport to them." to arg-1
+            message "&3Teleport request sent."
+        else:
+            message "&cYou cannot teleport to yourself!"
+ 
+command /tpaccept:
+    permission: cocaine.tpaccept
+    permission message: {@permissionmessage}
+    usage: &cUsage: /tpaccept
+    trigger:
+        if {skript::tpa::%player%} is set:
+            set {_k::*} to split {skript::tpa::%player%} at "|"
+            if {_k::2} was less than 30 seconds ago:
+                teleport {skript::tpa::%player%} to location of player
+                send "&3You were teleported to &e%player%&3!" to {skript::tpa::%player%} 
+                send "&e%{skript::tpa::%player%}% &3was teleported to you!" to player
+            else:
+                send "&cYou are under a 30 second cooldown!"
+        else if {skript::tpahere::%player%} is set:
+            set {_k::*} to split {skript::tpahere::%player%} at "|"
+            if {_k::2} was less than 30 seconds ago:
+                teleport player to location of {skript::tpahere::%player%}
+                send "&3You were teleported to &e%player%&3." to player
+                send "&e%{skript.tpahere.%player%}% &3was teleported to you." to {skript::tpahere::%player%} 
+            else:
+                send "&cYou are under a 30 second cooldown!"
+        else:
+            message "&cThere aren't any teleport requests"
+ 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                           PUNISHMENTS                                                                 #
+ 
+command /punish <offlineplayer>:
+    aliases: pun
+    permission: cocaine.punish
+    permission message: {@permissionmessage}
+    trigger:
+        if arg-1 is a player:
+            set {_offender} to arg-1
+            open virtual chest inventory with size 3 named "&c&lPUNISH" to player
+            format gui slot 4 of player with arg-1's skull named "&c&l%arg-1%" with lore "&eWhat's the punishment?"
+            format gui slot (all integers between 0 and 3) of player with dark gray glass pane named ""
+            format gui slot (all integers between 5 and 10) of player with dark gray glass pane named ""
+            format gui slot (all integers between 12 and 13) of player with dark gray glass pane named ""
+            format gui slot (all integers between 14 and 14) of player with dark gray glass pane named ""
+            format gui slot (all integers between 16 and 26) of player with dark gray glass pane named ""
+            format gui slot 11 of player with wooden axe named "&c&lBan" with lore "&eClick to open the ban GUI!" to run:
+                open virtual chest inventory with size 3 named "&c&lBan - %{_offender}%" to player
+                format gui slot (all integers between 0 and 3) of player with dark gray glass pane named ""
+                format gui slot (all integers between 5 and 10) of player with dark gray glass pane named ""
+                format gui slot (all integers between 12 and 13) of player with dark gray glass pane named ""
+                format gui slot (all integers between 14 and 14) of player with dark gray glass pane named ""
+                format gui slot (all integers between 16 and 26) of player with dark gray glass pane named ""
+                format gui slot 4 of player with {_offender}'s skull named "&c&l%{_offender}%" with lore "&eWhat's the reason?"
+                format gui slot 11 of player with book and quill named "&c&lHacking" with lore "&eDuration: 1 week" and "&eClick to ban &c%{_offender}% &efor Hacking!" to run:
+                    kick {_offender} due to "&4&lBANNED %newline%&cYou have been banned for Hacking. %newline% &8| &cDuration: 1 week."
+                    ban {_offender} due to "&4&lBANNED %newline%&cYou have been banned for Hacking. %newline% &8| &cDuration: 1 week." for 7 days
+                    close player's inventory
+                    message "&3Successfully banned &e%{_offender}% &3for &eHacking&3."
+                format gui slot 15 of player with book and quill named "&c&lMisbehaviour" with lore "&eDuration: 3 days" and "&eClick to ban &c%{_offender}% &efor Misbehaviour!" to run:
+                    kick {_offender} due to "&4&lBANNED %newline%&cYou have been banned for Misbehaviour. %newline% &8| &cDuration: 3 days."
+                    ban {_offender} due to "&4&lBANNED %newline%&cYou have been banned for Misbehaviour. %newline% &8| &cDuration: 3 days." for 3 days
+                    close player's inventory
+                    message "&3Successfully banned &e%{_offender}% &3for &eMisbehaviour&3."
+            format gui slot 15 of player with redstone dust named "&c&lWarn" with lore "&eClick to open the warn GUI!" to run:
+                open virtual chest inventory with size 3 named "&c&lWarn - %{_offender}%" to player
+                format gui slot (all integers between 0 and 3) of player with dark gray glass pane named ""
+                format gui slot (all integers between 5 and 9) of player with dark gray glass pane named ""
+                format gui slot (all integers between 11 and 13) of player with dark gray glass pane named ""
+                format gui slot (all integers between 14 and 15) of player with dark gray glass pane named ""
+                format gui slot (all integers between 17 and 26) of player with dark gray glass pane named ""
+                format gui slot 4 of player with {_offender}'s skull named "&c&l%{_offender}%" with lore "&eWhat's the reason?"
+                format gui slot 10 of player with book and quill named "&c&lHacking" with lore "&eClick to warn &c%{_offender}% &efor Hacking!" to run:
+                    set {_offenderuuid} to uuid of {_offender}
+                    add 1 to {warning::%{_offenderuuid}%}
+                    send "&cYou've been warned by &b%player% &cfor &bHacking &7[&c%{warning::%{_offenderuuid}%}%&7]" to {_offender}
+                    send "&3Successfully warned &e%{_offender}% &3for &3Hacking&e!" to player
+                    close player's inventory
+                    if {warning::%{_offenderuuid}%} is 3:
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 3 warns. %newline% &8| &cDuration: 10 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 3 warns. %newline% &8| &cDuration: 10 minutes." for 15 seconds
+                    if {warning::%{_offenderuuid}%} is 4:
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 4 warns. %newline% &8| &cDuration: 30 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 4 warns. %newline% &8| &cDuration: 30 minutes." for 30 minutes
+                    if {warning::%{_offenderuuid}%} is 5:
+                        set {warning::%{_offenderuuid}%} to 0
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 5 warns. %newline% &8| &cDuration: 60 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 5 warns. %newline% &8| &cDuration: 60 minutes." for 60 minutes
+                format gui slot 13 of player with book and quill named "&c&lMisbehaviour" with lore "&eClick to warn &c%{_offender}% &efor Misbehaviour!" to run:
+                    set {_offenderuuid} to uuid of {_offender}
+                    add 1 to {warning::%{_offenderuuid}%}
+                    send "&cYou've been warned by &b%player% &cfor &bMisbehaviour &7[&c%{warning::%{_offenderuuid}%}%&7]" to {_offender}
+                    send "&3Successfully warned &e%{_offender}% &3for &eMisbehaviour&3!" to player
+                    close player's inventory
+                    if {warning::%{_offenderuuid}%} is 3:
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 3 warns. %newline% &8| &cDuration: 10 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 3 warns. %newline% &8| &cDuration: 10 minutes." for 15 seconds
+                    if {warning::%{_offenderuuid}%} is 4:
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 4 warns. %newline% &8| &cDuration: 30 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 4 warns. %newline% &8| &cDuration: 30 minutes." for 30 minutes
+                    if {warning::%{_offenderuuid}%} is 5:
+                        set {warning::%{_offenderuuid}%} to 0
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 5 warns. %newline% &8| &cDuration: 60 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 5 warns. %newline% &8| &cDuration: 60 minutes." for 60 minutes
+                format gui slot 16 of player with book and quill named "&c&lExploiting Glitches" with lore "&eClick to warn &c%{_offender}% &efor Exploiting Glitches!" to run:
+                    set {_offenderuuid} to uuid of {_offender}
+                    add 1 to {warning::%{_offenderuuid}%}
+                    send "&cYou've been warned by &b%player% &cfor &bExploiting Glitches &7[&c%{warning::%{_offenderuuid}%}%&7]" to {_offender}
+                    send "&3Successfully warned &e%{_offender}% &3for &eExploiting Glitches&3!" to player
+                    close player's inventory
+                    if {warning::%{_offenderuuid}%} is 3:
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 3 warns. %newline% &8| &cDuration: 10 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 3 warns. %newline% &8| &cDuration: 10 minutes." for 15 seconds
+                    if {warning::%{_offenderuuid}%} is 4:
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 4 warns. %newline%&cDuration: 30 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 4 warns. %newline%&cDuration: 30 minutes." for 30 minutes
+                    if {warning::%{_offenderuuid}%} is 5:
+                        set {warning::%{_offenderuuid}%} to 0
+                        kick {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 5 warns. %newline%&cDuration: 60 minutes."
+                        ban {_offender} due to "&4&lBANNED %newline% &8| &cYou have been banned for having 5 warns. %newline%&cDuration: 60 minutes." for 60 minutes
+        else:
+            message "&cUsage: /punish <player>"
+ 
+command /kick <player> [<text>]:
+    permission: cocaine.kick
+    permission message: {@permissionmessage}
+    usage: &cUsage: /kick <player> [<reason>]
+    trigger:
+        if arg-2 is not set:
+            kick arg-1
+            message "&3Successfully kicked &e%arg-1%&3."
+        else:
+            kick arg-1 due to arg-2
+            message "&3Successfully kicked &e%arg-1% &3due to &e%arg-2%&3."
+ 
+command /kickall [<text>]:
+    permission: cocaine.kickall
+    permission message: {@permissionmessage}
+    usage: &cUsage: /kickall [<reason>]
+    trigger:
+        if arg-1 is not set:
+            set {_p} to player
+            loop all players:
+                loop-player is not {_p}:
+                    kick loop-player
+        else:
+            set {_p} to player
+            loop all players:
+                loop-player is not {_p}:
+                    kick loop-player due to arg-1
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                               WARPS                                                                               #
+ 
+command /createwarp <text>:
+    aliases: cwarp
+    permission: cocaine.createwarp
+    permission message: {@permissionmessage}
+    usage: &cUsage: /createwarp <text>
+    trigger:
+        if {warp.%arg-1%} is not set:
+            set {warp.%arg-1%} to location of player
+            message "&3Successfully created warp &e%arg-1%&3."
+            add arg-1 to {warps::*}
+        else:
+            message "&cThe name of this warp has already been taken!"
+ 
+command /warp <text>:
+    permission: cocaine.warp
+    permission message: {@permissionmessage}
+    usage: &cUsage: /warp <text>
+    trigger:
+        if {warp.%arg-1%} is set:
+            teleport player to {warp.%arg-1%}
+            message "&3Warping to &e%arg-1%&3."
+        else:
+            message "&cThis warp does not exist!"
+ 
+command /deletewarp <text>:
+    aliases: delwarp
+    permission: cocaine.delwarp
+    permission message: {@permissionmessage}
+    usage: &cUsage: /delwarp <text>
+    trigger:
+        if {warp.%arg-1%} is set:
+            delete {warp.%arg-1%}
+            message "&3Successfully deleted &e%arg-1%&3."
+            remove arg-1 from {warps::*}
+        else:
+            message "&cThis warp does not exist!"
+ 
+command /movewarp <text>:
+    aliases: mwarp
+    permission: cocaine.movewarp
+    permission message: {@permissionmessage}
+    usage: &cUsage: /mwarp <text>
+    trigger:
+        if {warp.%arg-1%} is set:
+            set {warp.%arg-1%} to location of player
+            message "&3Successfully moved &e%arg-1%&3."
+        else:
+            message "&cThis warp does not exist!"
+ 
+command /warps:
+    permission: cocaine.warps
+    permission message: {@permissionmessage}
+    usage: &cUsage: /warps
+    trigger:
+        if size of {warps::*} > 0:
+            message "&3Warps: &e%{warps::*}%&3"
+        else:
+            message "&cNo warps have been created yet!"
+ 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------ #
+#                                                                               OTHER                                                                               #
+ 
+command /fly:
+    permission: cocaine.fly
+    permission message: {@permissionmessage}
+    usage: &cUsage: /fly
+    trigger:
+        player can't fly:
+            enable fly for player
+            message "&3Set fly mode &aenabled&3."
+        else:
+            disable fly for player
+            message "&3Set fly mode &cdisabled&3."
+ 
+command /speed <text>:
+    permission: cocaine.walkspeed
+    permission message: {@permissionmessage}
+    usage: &cUsage: /speed <speed>
+    trigger:
+        if player is not flying:
+            if arg-1 is "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9" or "10":
+                arg-1 is "1":
+                    set player's walking speed to 0.2
+                    message "&3Set walking speed to &e1&3."
+                arg-1 is "2":
+                    set player's walking speed to 0.3
+                    message "&3Set walking speed to &e2&3."
+                arg-1 is "3":
+                    set player's walking speed to 0.4
+                    message "&3Set walking speed to &e3&3."
+                arg-1 is "4":
+                    set player's walking speed to 0.5
+                    message "&3Set walking speed to &e4&3."
+                arg-1 is "5":
+                    set player's walking speed to 0.6
+                    message "&3Set walking speed to &e5&3."
+                arg-1 is "6":
+                    set player's walking speed to 0.7
+                    message "&3Set walking speed to &e6&3."
+                arg-1 is "7":
+                    set player's walking speed to 0.8
+                    message "&3Set walking speed to &e7&3."
+                arg-1 is "8":
+                    set player's walking speed to 0.9
+                    message "&3Set walking speed to &e8&3."
+                arg-1 is "9":
+                    set player's walking speed to 1
+                    message "&3Set walking speed to &e9&3."
+                arg-1 is "10":
+                    set player's walking speed to 1.1
+                    message "&3Set walking speed to &e10&3."
+            else:
+                message "&cPlease choose a number between 1 to 10."
+        else:
+            if arg-1 is "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9" or "10":
+                arg-1 is "1":
+                    set player's flying speed to 0.2
+                    message "&3Set flying speed to &e1&3."
+                arg-1 is "2":
+                    set player's flying speed to 0.3
+                    message "&3Set flying speed to &e2&3."
+                arg-1 is "3":
+                    set player's flying speed to 0.4
+                    message "&3Set flying speed to &e3&3."
+                arg-1 is "4":
+                    set player's flying speed to 0.5
+                    message "&3Set flying speed to &e4&3."
+                arg-1 is "5":
+                    set player's flying speed to 0.6
+                    message "&3Set flying speed to &e5&3."
+                arg-1 is "6":
+                    set player's flying speed to 0.7
+                    message "&3Set flying speed to &e6&3."
+                arg-1 is "7":
+                    set player's flying speed to 0.8
+                    message "&3Set flying speed to &e7&3."
+                arg-1 is "8":
+                    set player's flying speed to 0.9
+                    message "&3Set flying speed to &e8&3."
+                arg-1 is "9":
+                    set player's flying speed to 1
+                    message "&3Set flying speed to &e9&3."
+                arg-1 is "10":
+                    set player's flying speed to 1.1
+                    message "&3Set flying speed to &e10&3."
+            else:
+                message "&cPlease choose a number between 1 to 10."
+ 
+command /walkspeed <text>:
+    permission: cocaine.walkspeed
+    permission message: {@permissionmessage}
+    usage: &cUsage: /walkspeed <speed>
+    trigger:
+        if arg-1 is "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9" or "10":
+            arg-1 is "1":
+                set player's walking speed to 0.2
+                message "&3Set walking speed to &e1&3."
+            arg-1 is "2":
+                set player's walking speed to 0.3
+                message "&3Set walking speed to &e2&3."
+            arg-1 is "3":
+                set player's walking speed to 0.4
+                message "&3Set walking speed to &e3&3."
+            arg-1 is "4":
+                set player's walking speed to 0.5
+                message "&3Set walking speed to &e4&3."
+            arg-1 is "5":
+                set player's walking speed to 0.6
+                message "&3Set walking speed to &e5&3."
+            arg-1 is "6":
+                set player's walking speed to 0.7
+                message "&3Set walking speed to &e6&3."
+            arg-1 is "7":
+                set player's walking speed to 0.8
+                message "&3Set walking speed to &e7&3."
+            arg-1 is "8":
+                set player's walking speed to 0.9
+                message "&3Set walking speed to &e8&3."
+            arg-1 is "9":
+                set player's walking speed to 1
+                message "&3Set walking speed to &e9&3."
+            arg-1 is "10":
+                set player's walking speed to 1.1
+                message "&3Set walking speed to &e10&3."
+        else:
+            message "&cPlease choose a number between 1 to 10."
+ 
+command /flyspeed <text>:
+    permission: cocaine.flyspeed
+    permission message: {@permissionmessage}
+    usage: &cUsage: /flyspeed <speed>
+    trigger:
+        if arg-1 is "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9" or "10":
+            arg-1 is "1":
+                set player's flying speed to 0.2
+                message "&3Set flying speed to &e1&3."
+            arg-1 is "2":
+                set player's flying speed to 0.3
+                message "&3Set flying speed to &e2&3."
+            arg-1 is "3":
+                set player's flying speed to 0.4
+                message "&3Set flying speed to &e3&3."
+            arg-1 is "4":
+                set player's flying speed to 0.5
+                message "&3Set flying speed to &e4&3."
+            arg-1 is "5":
+                set player's flying speed to 0.6
+                message "&3Set flying speed to &e5&3."
+            arg-1 is "6":
+                set player's flying speed to 0.7
+                message "&3Set flying speed to &e6&3."
+            arg-1 is "7":
+                set player's flying speed to 0.8
+                message "&3Set flying speed to &e7&3."
+            arg-1 is "8":
+                set player's flying speed to 0.9
+                message "&3Set flying speed to &e8&3."
+            arg-1 is "9":
+                set player's flying speed to 1
+                message "&3Set flying speed to &e9&3."
+            arg-1 is "10":
+                set player's flying speed to 1.1
+                message "&3Set flying speed to &e10&3."
+        else:
+            message "&cPlease choose a number between 1 to 10."
+ 
+command /clearinventory [<player>]:
+    aliases: ci
+    permission: cocaine.clearinventory
+    permission message: {@permissionmessage}
+    usage: &cUsage: /clearinventory
+    trigger:
+        if arg-1 is not set:
+            message "&3Successfully cleared all inventory items."
+            clear player's inventory
+        else:
+            message "&3Successfully cleared all inventory items from &e%arg-1%"
+            clear arg-1's inventory
+ 
+command /invsee <player>:
+    aliases: inventorysee
+    permission: cocaine.invsee
+    permission message: {@permissionmessage}
+    usage: &cUsage: /invsee <player>
+    trigger:
+        open arg-1's inventory to player
+ 
+command /itemname <text>:
+    aliases: iname
+    permission: cocaine.itemname
+    permission message: {@permissionmessage}
+    usage: &cUsage: /iname <text>
+    trigger:
+        player's held item is not air:
+            if arg-1 is set:
+                set name of player's held item to colored arg-1
+                message "&3Set name of held item to ""&f%colored arg-1%&3""."
+            else:
+                message "&cUsage: /iname <text>"
+        else:
+            message "&cYou must hold an item in order to use this!"
+ 
+command /vanish:
+    aliases: v
+    permission: cocaine.vanish
+    permission message: {@permissionmessage}
+    usage: &cUsage: /vanish
+    trigger:
+        if {vanish.%player's uuid%} is false:
+            set {vanish.%player's uuid%} to true
+            message "&3Set vanish &aenabled&3."
+            hide player from all players
+            send action bar "&aVANISH ENABLED" to player
+        else:
+            set {vanish.%player's uuid%} to false
+            message "&3Set vanish &cdisabled&3."
+            reveal player to all players
+            send action bar "&cVANISH DISABLED" to player
+ 
+on disconnect:
+    set {vanish.%player's uuid%} to false
+ 
+command /ec:
+    aliases: enderchest
+    permission: cocaine.enderchest
+    permission message: {@permissionmessage}
+    usage: &cUsage: /ec
+    trigger:
+        open player's enderchest to player
+ 
+command /trash:
+    aliases: disposal
+    permission: cocaine.trash
+    permission message: {@permissionmessage}
+    usage: &cUsage: /trash
+    trigger:
+        open virtual chest with 5 rows named "&c&lDisposal" to player
+ 
+command /hat:
+    permission: cocaine.hat
+    permission message: {@permissionmessage}
+    usage: &cUsage: /hat
+    trigger:
+        if player's tool is not air:
+            if player's helmet slot is empty:
+                set player's helmet slot to player's tool
+                remove player's tool from player's inventory
+            else:
+                message "&cYour helmet slot has to be empty in order to do that!"
+        else:
+            message "&cThis is air..."
+ 
+command /broadcast <text>:
+    aliases: bc
+    permission: cocaine.bc
+    permission message: {@permissionmessage}
+    usage: &cUsage: /broadcast <text>
+    trigger:
+        broadcast "{@broadcastprefix} {@broadcasttextcolor}%arg-1%"
+ 
+command /mutechat:
+    aliases: mc
+    permission: cocaine.mutechat
+    permission message: {@permissionmessage}
+    usage: &cUsage: /mutechat
+    trigger:
+        if {mutechat} is false:
+            set {mutechat} to true
+            broadcast "&2&l&m-------------------------------------"
+            broadcast "&b&lChat has been muted by &e&l%player%&b&l."
+            broadcast "&2&l&m-------------------------------------"
+        else:
+            set {mutechat} to false
+            broadcast "&2&l&m-------------------------------------"
+            broadcast "&b&lChat has been unmuted by &e&l%player%&b&l."
+            broadcast "&2&l&m-------------------------------------"
+ 
+on chat:
+    if {mutechat} is true:
+        player does not have permission "cocaine.mutechattalk":
+            cancel event
+ 
+command /clearchat:
+    aliases: cc
+    permission: cocaine.clearchat
+    permission message: {@permissionmessage}
+    usage: &cUsage: /clearchat
+    trigger:
+        loop 100 times:
+            broadcast ""
+        broadcast "&2&l&m-------------------------------------"
+        broadcast "&b&lChat has been cleared by &e&l%player%&b&l."
+        broadcast "&2&l&m-------------------------------------"
+ 
+command /enchant <enchantment type>:
+    aliases: ench
+    permission: cocaine.enchant
+    permission message: {@permissionmessage}
+    usage: &cUsage: /enchant <enchant>
+    trigger:
+        if player's held item is not air:
+            enchant player's held item with arg-1
+        else:
+            message "&cYou must hold something in order to do this!"
+ 
+command /unbreakable:
+    permission: cocaine.unbreakable
+    permission message: {@permissionmessage}
+    usage: &cUsage: /unbreakable
+    trigger:
+        if player's held item is not air:
+            add "{Unbreakable:1b}" to nbt of player's held item
+        else:
+            message "&cYou must hold something in order to do this!"
+ 
+command /afk:
+    permission: cocaine.unbreakable
+    permission message: {@permissionmessage}
+    usage: &cUsage: /afk
+    trigger:
+        if {afk.%player%} is false:
+            set {afk.%player%} to true
+            broadcast "&7%player% is now AFK."
+        else:
+            set {afk.%player%} to false
+            broadcast "&7%player% is no longer AFK."
+ 
+on any move:
+    if {afk.%player%} is true:
+        set {afk.%player%} to false
+        broadcast "&7%player% &7is no longer AFK"
+ 
+on disconnect:
+    if {afk.%player%} is true:
+        set {afk.%player%} to false
+        broadcast "&7%player% &7is no longer AFK."
+ 
+command /day:
+    permission: cocaine.day
+    permission message: {@permissionmessage}
+    usage: &cUsage: /day
+    trigger:
+        set time to day
+        message "&3Successfully set time to &eday&3."
+ 
+command /night:
+    permission: cocaine.night
+    permission message: {@permissionmessage}
+    usage: &cUsage: /night
+    trigger:
+        set time to night
+        message "&3Successfully set time to &enight&3."
+ 
+command /sudo <player> <text>:
+    permission: cocaine.sudo
+    permission message: {@permissionmessage}
+    usage: &cUsage: /sudo <player> <text>
+    trigger:
+        make arg-1 say arg-2
+        message "&3Successfully sudoed &e%arg-1%&3."
+ 
+command /nick <text>:
+    permission: cocaine.nick
+    permission message: {@permissionmessage}
+    usage: &cUsage: /nick <text>
+    trigger:
+        if length of arg-1 is less than 16:
+            set player's displayname to "~%colored arg-1%"
+            message "&3Successfully set nick to &f%colored arg-1%&3."
+            set {nicked.%player%} to true
+        else:
+            message "&cYour nick cannot contain more than 16 characters!"
+ 
+command /unnick:
+    permission: cocaine.unnick
+    permission message: {@permissionmessage}
+    usage: &cUsage: /unnick
+    trigger:
+        if {nicked.%player%} is true:
+            set player's displayname to player's name
+            message "&3Successfully unnicked."
+            set {nicked.%player%} to false
+        else:
+            message "&cYou aren't nicked!"
+ 
+on disconnect:
+    set {nicked.%player%} to false
+ 
+command /feed [<player>]:
+    permission: cocaine.feed
+    permission message: {@permissionmessage}
+    usage: &cUsage: /feed [<player>]
+    trigger:
+        arg-1 is not set:
+            feed player
+            send "&3Successfully satiated your appetite."
+        else:
+            arg-1 is a player:
+                feed arg-1
+                send "&3Successfully satiated the appetite of &e%arg-1%&3." to player
+                send "&3Your appetite was sated by &e%player%&3." to arg-1
+ 
+command /fix:
+    aliases: repair
+    permission: cocaine.fix
+    permission message: {@permissionmessage}
+    usage: &cUsage: /fix
+    trigger:
+        if player's tool is not air:
+            repair player's tool
+            message "&3Successfully repaired held item."
+        else:
+            message "&cThis is air..."
+ 
+command /suicide:
+    permission: cocaine.suicide
+    permission message: {@permissionmessage}
+    usage: &cUsage: /suicide
+    trigger:
+        kill player
+        message "&3Successfully suicided."
+ 
+command /god [<player>]:
+    permission: cocaine.god
+    permission message: {@permissionmessage}
+    usage: &cUsage: /god [<player>]
+    trigger:
+        if arg-1 is not set:
+            if {god.%player%} is true:
+                set {god.%player%} to false
+                message "&3Successfully &aenabled &3godmode."
+            else:
+                set {god.%player%} to true
+                message "&3Successfully &cdisabled &3godmode."
+        else:
+            if {god.%arg-1%} is true:
+                set {god.%arg-1%} to false
+                message "&3Successfully &aenabled &3godmode for &e%arg-1%&3."
+            else:
+                set {god.%arg-1%} to true
+                message "&3Successfully &cdisabled &3godmode for &e%arg-1%&3."
+ 
+on damage:
+    if {god.%victim%} is false:
+        cancel event
+ 
+on damage:
+    if attacker is not op:
+        if {god.%attacker%} is false:
+            cancel event
+
+command /setspawn:
+    permission: setspawn.use
+    permission message: &cYeah, &oNo.
+    trigger:
+        set {spawn} to player's location
+        send "&aYou've successfully set the spawn location." to player
+
+command /delspawn:
+    permission: setspawn.use
+    permission message: &cYeah, &oNo.
+    trigger:
+        if {spawn} is set:
+            delete {spawn}
+            send "&cYou've deleted the spawn location." to player
+        else:
+            send "&cThe spawn location isn't set." to player
+
+command /spawn:
+    trigger:
+        teleport player to {spawn}
+command /hub:
+    trigger:
+        send "&7Hub coming soon..."
+        teleport player to {spawn}
+
+
+on respawn:
+    wait 2 seconds
+    make player execute "/spawn"
+
+command /skrl:
+    aliases: skriptreload
+    description: Reloads Scripts
+    permission: admin.skriptreload
+    trigger:
+        execute player command "sk reload scripts"
+        send "&7Reloaded scripts"
+
+command /skpl:
+    aliases: pluginreload
+    description: Reloads plugins
+    permission: admin.pluginreload
+    trigger:
+        broadcast "Reloading plugins, server may lag"
+        execute player command "reload confirm"
+        send "&7Reloaded plugins"
+
+
+command /cc:
+    aliases: clearchat
+    description: Clear chat for all players
+    permission: admin.clearchat
+    trigger:
+        loop 300 times:
+            broadcast "&7"
+
+# ### Commands
+command /silence:
+    description: Toggles public chat
+    permission: Jable.mod-high
+    executable by: players and console
+    trigger:
+        if {silence} is not set:
+            # We're going into silence mode
+            set {silence} to true
+            broadcast " &c%command sender%&r has silenced all chat"
+        else:
+            # We're going out of silence mode
+            delete {silence}
+            broadcast " &c%command sender%&r has un-silenced all chat"
+
+# ### Events
+
+on chat:
+    # Conditions
+    {silence} is set
+    player doesn't have permission "Jable.mod-high"
+    
+    # Logic
+    send "&7 Only staff may speak in silence mode" to player
+    cancel the event
+
+on command:
+    # Conditions
+    command is "me" or "minecraft:me" or "essentials:me"
+    {silence} is set
+    player doesn't have permission "Jable.mod-high"
+
+    # Logic
+    send "&7 Only staff may speak in silence mode" to player
+    cancel the event
+
+
