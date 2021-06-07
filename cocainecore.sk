@@ -3,14 +3,14 @@
 
 options:
     # Change this to the way you want your permission message to look like.
-    permissionmessage: &cYou do not have the correct permission to execute this command!
+    permissionmessage: &cNot available.
     # Change this to the way you want your broadcast message to look like.
     broadcastprefix: &3&lBROADCAST
     broadcasttextcolor: &e
     # Join & Quit messages - change this to whatever you want...
     joinmessage: &8[&a+&8] &7%player%
     quitmessage: &8[&4-&8] &7%player%
-    firstjoinmessage: &7Welcome &9%player% &7to &9&lApery&7!
+    firstjoinmessage: &7Welcome &9%player% &7to &9&lJable&7!
  
 on join:
     set join message to "{@joinmessage}"
@@ -23,15 +23,7 @@ on first join:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------ #
 #                                                                               CHAT                                                                                    #
  
-on chat:
-    set chat format to "%player's prefix%%player's display name%%player's suffix% &8» %{chatcolor.%player%}%%message%"
- 
-on first join:
-    set {chatcolor.%player%} to "&7"
- 
-on join:
-    if {chatcolor.%player%} is not set:
-        set {chatcolor.%player%} to "&7"
+
  
 command /chatcolor:
     aliases: chatcolour
@@ -754,52 +746,7 @@ command /broadcast <text>:
     usage: &cUsage: /broadcast <text>
     trigger:
         broadcast "{@broadcastprefix} {@broadcasttextcolor}%arg-1%"
- 
-command /mutechat:
-    aliases: mc
-    permission: cocaine.mutechat
-    permission message: {@permissionmessage}
-    usage: &cUsage: /mutechat
-    trigger:
-        if {mutechat} is false:
-            set {mutechat} to true
-            broadcast "&2&l&m-------------------------------------"
-            broadcast "&b&lChat has been muted by &e&l%player%&b&l."
-            broadcast "&2&l&m-------------------------------------"
-        else:
-            set {mutechat} to false
-            broadcast "&2&l&m-------------------------------------"
-            broadcast "&b&lChat has been unmuted by &e&l%player%&b&l."
-            broadcast "&2&l&m-------------------------------------"
- 
-on chat:
-    if {mutechat} is true:
-        player does not have permission "cocaine.mutechattalk":
-            cancel event
- 
-command /clearchat:
-    aliases: cc
-    permission: cocaine.clearchat
-    permission message: {@permissionmessage}
-    usage: &cUsage: /clearchat
-    trigger:
-        loop 100 times:
-            broadcast ""
-        broadcast "&2&l&m-------------------------------------"
-        broadcast "&b&lChat has been cleared by &e&l%player%&b&l."
-        broadcast "&2&l&m-------------------------------------"
- 
-command /enchant <enchantment type>:
-    aliases: ench
-    permission: cocaine.enchant
-    permission message: {@permissionmessage}
-    usage: &cUsage: /enchant <enchant>
-    trigger:
-        if player's held item is not air:
-            enchant player's held item with arg-1
-        else:
-            message "&cYou must hold something in order to do this!"
- 
+
 command /unbreakable:
     permission: cocaine.unbreakable
     permission message: {@permissionmessage}
